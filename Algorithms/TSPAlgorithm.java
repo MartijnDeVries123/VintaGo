@@ -1,4 +1,4 @@
-package AlgoritmTest;
+package Algorithms;
 
 import java.util.List;
 
