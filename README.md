@@ -1,1 +1,0 @@
-# ~~RouteplannerApp~~ VintaGo
