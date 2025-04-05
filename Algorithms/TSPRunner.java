@@ -1,4 +1,4 @@
-package AlgoritmTest;
+package Algorithms;
 
 public class TSPRunner {
     public static void main(String[] args) {
