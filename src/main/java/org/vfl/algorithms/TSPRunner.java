@@ -1,4 +1,4 @@
-package Algorithms;
+package org.vfl.algorithms;
 
 public class TSPRunner {
     public static void main(String[] args) {
