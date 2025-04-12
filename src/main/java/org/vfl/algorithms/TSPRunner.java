@@ -17,34 +17,22 @@ public class TSPRunner {
                 {60, 85, 105, 110, 120, 125, 135, 145, 155, 165, 175, 0}
         };
 
+        String[][] randomAddresses = {
+                {"J.M. de Muinck Keizerlaan", "32", "Utrecht"},
+                {"Verryn Stuartweg", "45", "Goes"},
+                {"Kuipersdijk", "165", "Enschede"},
+                {"Neptunusplein","44","Amersfoort"},
+                {"Kryptonweg","11","Utrecht"},
+                {"Morsstraat","9","Leiden"},
+                {"Staalindustrieweg","19","Alblasserdam"},
+                {"Energieweg","102","Nijmegen"},
+        };
 
-/*        TSPAlgorithm nearestNeighbor = new NearestNeighbor();
-        TSPAlgorithm simulatedAnnealing = new SimulatedAnnealing();
-
-        System.out.println("Nearest Neighbor Route: " + nearestNeighbor.findShortestRoute(distanceMatrix));
-        System.out.println("Simulated Annealing Route: " + simulatedAnnealing.findShortestRoute(distanceMatrix));
-*/
         String[] algoritms = {"Nearest Neighbor", "Simulated Annealing", "Brute Force"};
         for (String algorithm : algoritms) {
             TSPAlgorithm tspChoice = getAlgorithmInstance(algorithm);
             System.out.println("TSP Algorithm: " + algorithm + tspChoice.findShortestRouteTimingMethod(distanceMatrix));
         }
-
-/*
-        TSPAlgorithm tspChoice = getAlgorithmInstance(algorithm);
-
-        //System.out.println("TSP Algorithm: " + algorithm + tspChoice.findShortestRoute(distanceMatrix));
-        System.out.println("TSP Algorithm: " + algorithm + tspChoice.findShortestRouteTimingMethod(distanceMatrix));
-
-        algorithm = "Simulated Annealing";
-        tspChoice = getAlgorithmInstance(algorithm);
-        System.out.println("TSP Algorithm: " + algorithm + tspChoice.findShortestRouteTimingMethod(distanceMatrix));
-
-        algorithm = "Brute Force";
-        tspChoice = getAlgorithmInstance(algorithm);
-        System.out.println("TSP Algorithm: " + algorithm + tspChoice.findShortestRouteTimingMethod(distanceMatrix));
-*/
-
     }
 
     private static TSPAlgorithm getAlgorithmInstance(String algorithm) {
