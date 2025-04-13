@@ -1,9 +1,14 @@
-version: '3.8'
-
 services:
   vintago:
+    container_name: backend
+    networks:
+      - backend-network
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:8080"
+      - "8080:8080"
+networks:
+  backend-network:
+    name: backend-network
+    driver: bridge
