@@ -1,5 +1,7 @@
 package org.vfl.algorithms;
 
+import org.vfl.vintago.dto.AddressDTO;
+
 public class TSPRunner {
     public static void main(String[] args) {
         double[][] distanceMatrix = {
@@ -18,15 +20,21 @@ public class TSPRunner {
         };
 
         String[][] randomAddresses = {
-                {"J.M. de Muinck Keizerlaan", "32", "Utrecht"},
-                {"Verryn Stuartweg", "45", "Goes"},
-                {"Kuipersdijk", "165", "Enschede"},
-                {"Neptunusplein","44","Amersfoort"},
-                {"Kryptonweg","11","Utrecht"},
-                {"Morsstraat","9","Leiden"},
-                {"Staalindustrieweg","19","Alblasserdam"},
-                {"Energieweg","102","Nijmegen"},
+                {"J.M. de Muinck Keizerlaan", "28", "3555 JV", "Utrecht"},
+                {"Verryn Stuartweg", "45", "4462 GE", "Goes"},
+                {"Kuipersdijk", "165", "7512 CB", "Enschede"},
+                {"Neptunusplein", "44", "3814 BR", "Amersfoort"},
+                {"Kryptonweg", "11", "3542 RX", "Utrecht"},
+                {"Morsstraat", "9", "2312 BK", "Leiden"},
+                {"Staalindustrieweg", "19", "2952 AT", "Alblasserdam"},
+                {"Energieweg", "102", "6541 CZ", "Nijmegen"},
         };
+
+        for (String[] randomAddress : randomAddresses) {
+            AddressDTO address = new AddressDTO(randomAddress[0], randomAddress[1], randomAddress[2], randomAddress[3]);
+            address.setLocation();
+            System.out.println(address);
+        }
 
         String[] algoritms = {"Nearest Neighbor", "Simulated Annealing", "Brute Force"};
         for (String algorithm : algoritms) {
