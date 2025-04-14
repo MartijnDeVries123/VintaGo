@@ -1,6 +1,5 @@
 package org.vfl.vintago.dto;
 
-import org.springframework.web.reactive.function.client.WebClient;
 import org.vfl.vintago.service.GeocodingService;
 
 public class AddressDTO {
@@ -39,7 +38,7 @@ public class AddressDTO {
 
     public void setLocation() {
         String preparedAddress = street + "," + number + "," + city;
-        GeocodingService geocodingService = new GeocodingService(WebClient.builder());
+        GeocodingService geocodingService = new GeocodingService();
         this.location = geocodingService.getCoordinates(preparedAddress).block();
     }
 
@@ -54,7 +53,7 @@ public class AddressDTO {
         if (location == null) {
             return address;
         } else {
-            address += "," + location.toString();
+            address += "," + location;
             return address;
         }
     }
