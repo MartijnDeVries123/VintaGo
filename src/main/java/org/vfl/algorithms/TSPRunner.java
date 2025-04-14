@@ -2,6 +2,8 @@ package org.vfl.algorithms;
 
 import org.vfl.vintago.dto.AddressDTO;
 
+import java.util.List;
+
 public class TSPRunner {
     public static void main(String[] args) {
         double[][] distanceMatrix = {
@@ -19,19 +21,18 @@ public class TSPRunner {
                 {60, 85, 105, 110, 120, 125, 135, 145, 155, 165, 175, 0}
         };
 
-        String[][] randomAddresses = {
-                {"J.M. de Muinck Keizerlaan", "28", "3555 JV", "Utrecht"},
-                {"Verryn Stuartweg", "45", "4462 GE", "Goes"},
-                {"Kuipersdijk", "165", "7512 CB", "Enschede"},
-                {"Neptunusplein", "44", "3814 BR", "Amersfoort"},
-                {"Kryptonweg", "11", "3542 RX", "Utrecht"},
-                {"Morsstraat", "9", "2312 BK", "Leiden"},
-                {"Staalindustrieweg", "19", "2952 AT", "Alblasserdam"},
-                {"Energieweg", "102", "6541 CZ", "Nijmegen"},
-        };
+        List<AddressDTO> addresses = List.of(
+                new AddressDTO("J.M. de Muinck Keizerlaan", "28", "3555 JV", "Utrecht"),
+                new AddressDTO("Verryn Stuartweg", "45", "4462 GE", "Goes"),
+                new AddressDTO("Kuipersdijk", "165", "7512 CB", "Enschede"),
+                new AddressDTO("Neptunusplein", "44", "3814 BR", "Amersfoort"),
+                new AddressDTO("Kryptonweg", "11", "3542 RX", "Utrecht"),
+                new AddressDTO("Morsstraat", "9", "2312 BK", "Leiden"),
+                new AddressDTO("Staalindustrieweg", "19", "2952 AT", "Alblasserdam"),
+                new AddressDTO("Energieweg", "102", "6541 CZ", "Nijmegen")
+        );
 
-        for (String[] randomAddress : randomAddresses) {
-            AddressDTO address = new AddressDTO(randomAddress[0], randomAddress[1], randomAddress[2], randomAddress[3]);
+        for (AddressDTO address : addresses) {
             address.setLocation();
             System.out.println(address);
         }
