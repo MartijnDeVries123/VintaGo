@@ -13,8 +13,8 @@ public class GeocodingService {
     private final WebClient webClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public GeocodingService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder
+    public GeocodingService() {
+        this.webClient = WebClient.builder()
                 .baseUrl("https://maps.googleapis.com/maps/api")
                 .build();
     }
