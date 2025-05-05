@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 public class Sim20DatabaseSeeder extends SimulationDatabaseSeeder {
     @Override
     public void seed() {
-        super.seed();
+        emptyTables();
         importFromCsv("sim20addresses.csv");
     }
 }

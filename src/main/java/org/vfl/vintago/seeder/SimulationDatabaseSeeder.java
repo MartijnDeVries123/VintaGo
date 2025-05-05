@@ -6,7 +6,7 @@ import org.vfl.vintago.repository.AddressRepository;
 import org.vfl.vintago.service.CsvAddressImportService;
 
 @Component
-public class SimulationDatabaseSeeder implements DatabaseSeeder {
+public abstract class SimulationDatabaseSeeder implements DatabaseSeeder {
     @Autowired
     private  AddressRepository addressRepository;
     @Autowired
@@ -17,11 +17,9 @@ public class SimulationDatabaseSeeder implements DatabaseSeeder {
         // TODO empty routes + route_address
     }
 
-    public void seed() {
-        emptyTables();
-    }
-
     public void importFromCsv(String file) {
         csvAddressImportService.importFromCsv(file);
     }
+
+    public abstract void seed();
 }
