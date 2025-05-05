@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS retours;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE addresses (
+CREATE TABLE address (
     id INT PRIMARY KEY AUTO_INCREMENT,
     street VARCHAR(255) NOT NULL,
     number VARCHAR(50) NOT NULL,
@@ -24,16 +24,16 @@ CREATE TABLE addresses (
     status VARCHAR(50)
 );
 
-CREATE TABLE deliverytruck (
+CREATE TABLE delivery_truck (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE routes (
+CREATE TABLE route (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
-    deliverytruck_id INT,
-    FOREIGN KEY (deliverytruck_id) REFERENCES deliverytruck(id) ON DELETE SET NULL
+    delivery_truck_id INT,
+    FOREIGN KEY (delivery_truck_id) REFERENCES delivery_truck(id) ON DELETE SET NULL
 );
 
 CREATE TABLE route_address (
@@ -41,17 +41,7 @@ CREATE TABLE route_address (
     address_id INT NOT NULL,
     step_order INT NOT NULL,
     PRIMARY KEY (route_id, address_id),
-    FOREIGN KEY (route_id) REFERENCES routes(id) ON DELETE CASCADE,
-    FOREIGN KEY (address_id) REFERENCES addresses(id) ON DELETE CASCADE
+    FOREIGN KEY (route_id) REFERENCES route(id) ON DELETE CASCADE,
+    FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
 );
 
-CREATE TABLE vrp_solver (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    configuration TEXT
-    );
-
-CREATE TABLE simulationtype (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
-);

@@ -2,6 +2,7 @@ package org.vfl.vintago.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "delivery_truck")
 public class DeliveryTruck {
 
     @Id

@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.vfl.vintago.dto.CoordinateDTO;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "addresses")
+@Table(name = "address")
 public class Address {
 
     @Id
