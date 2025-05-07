@@ -1,5 +1,7 @@
 package org.vfl.vintago.entity;
+
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "delivery_truck")
@@ -12,6 +14,10 @@ public class DeliveryTruck {
 
     @Column(name= "name", nullable = false)
     private String name;
+
+
+    @OneToMany(mappedBy = "deliveryTruck", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Route> routes;
 
     public DeliveryTruck() {}
 
