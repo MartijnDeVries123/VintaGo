@@ -25,9 +25,6 @@ public class Address {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "status")
-    private String status;
-
     @Column(name = "lat")
     private double lat;
 
@@ -84,14 +81,6 @@ public class Address {
 
     public void setLng(double lng) {
         this.lng = lng;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     @Transient
