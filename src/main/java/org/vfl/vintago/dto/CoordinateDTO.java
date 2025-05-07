@@ -9,6 +9,14 @@ public class CoordinateDTO {
         this.lng = lng;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
     public String toString() {
         return "latitude " + lat + ", longitude " + lng;
     }
