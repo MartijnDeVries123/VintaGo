@@ -10,7 +10,7 @@ public class Route {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "delivery_date", nullable = false)
     private LocalDate deliveryDate;
@@ -30,11 +30,11 @@ public class Route {
         this.deliveryTruck = deliveryTruck;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
