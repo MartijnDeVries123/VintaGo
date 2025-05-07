@@ -20,8 +20,7 @@ CREATE TABLE address (
     zip VARCHAR(20) NOT NULL,
     city VARCHAR(100) NOT NULL,
     lat DOUBLE,
-    lng DOUBLE,
-    status VARCHAR(50)
+    lng DOUBLE
 );
 
 CREATE TABLE delivery_truck (
@@ -32,6 +31,7 @@ CREATE TABLE delivery_truck (
 CREATE TABLE route (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
+    delivery_date DATE NOT NULL,
     delivery_truck_id INT,
     FOREIGN KEY (delivery_truck_id) REFERENCES delivery_truck(id) ON DELETE SET NULL
 );
@@ -40,6 +40,7 @@ CREATE TABLE route_address (
     route_id INT NOT NULL,
     address_id INT NOT NULL,
     step_order INT NOT NULL,
+    status VARCHAR(50) NOT NULL,
     PRIMARY KEY (route_id, address_id),
     FOREIGN KEY (route_id) REFERENCES route(id) ON DELETE CASCADE,
     FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE
