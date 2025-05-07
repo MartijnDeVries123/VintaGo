@@ -12,8 +12,6 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     @Column(name = "delivery_date", nullable = false)
     private LocalDate deliveryDate;
 
@@ -27,8 +25,7 @@ public class Route {
     // Constructors
     public Route() {}
 
-    public Route(String name, LocalDate deliveryDate, DeliveryTruck deliveryTruck) {
-        this.name = name;
+    public Route(LocalDate deliveryDate, DeliveryTruck deliveryTruck) {
         this.deliveryDate = deliveryDate;
         this.deliveryTruck = deliveryTruck;
     }
@@ -39,14 +36,6 @@ public class Route {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public LocalDate getDeliveryDate() {

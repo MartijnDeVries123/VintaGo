@@ -30,7 +30,6 @@ CREATE TABLE delivery_truck (
 
 CREATE TABLE route (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255),
     delivery_date DATE NOT NULL,
     delivery_truck_id INT,
     FOREIGN KEY (delivery_truck_id) REFERENCES delivery_truck(id) ON DELETE SET NULL
