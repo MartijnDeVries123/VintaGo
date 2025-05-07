@@ -7,15 +7,14 @@ import org.vfl.vintago.dto.SimulationTypeDTO;
 import org.vfl.vintago.service.SimulationTypeDispatcher;
 
 @RestController
-@RequestMapping("/simulationtypes")
+@RequestMapping("/api/simulationtypes")
 public class SimulationController {
 
     @Autowired
     SimulationTypeDispatcher dispatcher;
 
-
     @PostMapping
-    public ResponseEntity<Void> runSimulationType(@RequestBody SimulationTypeDTO request) {
+    public ResponseEntity<Void> initSimulation(@RequestBody SimulationTypeDTO request) {
         dispatcher.dispatch(request.getType());
         return ResponseEntity.ok().build();
     }
