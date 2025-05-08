@@ -35,8 +35,6 @@ public class Address {
     private String status;
 
     public Long getId() {
-
-    public int getId() {
         return id;
     }
 
