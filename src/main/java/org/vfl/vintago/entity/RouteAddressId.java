@@ -8,29 +8,29 @@ import java.util.Objects;
 @Embeddable
 public class RouteAddressId implements Serializable {
 
-    private int routeId;
-    private int addressId;
+    private Long routeId;
+    private Long addressId;
 
     public RouteAddressId() {}
 
-    public RouteAddressId(int routeId, int addressId) {
+    public RouteAddressId(Long routeId, Long addressId) {
         this.routeId = routeId;
         this.addressId = addressId;
     }
 
-    public int getRouteId() {
+    public Long getRouteId() {
         return routeId;
     }
 
-    public void setRouteId(Integer routeId) {
+    public void setRouteId(Long routeId) {
         this.routeId = routeId;
     }
 
-    public int getAddressId() {
+    public Long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
 

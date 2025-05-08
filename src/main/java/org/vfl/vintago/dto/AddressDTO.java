@@ -1,14 +1,14 @@
 package org.vfl.vintago.dto;
 
 public class AddressDTO {
-    private final int id;
+    private final Long id;
     private final String street;
     private final String number;
     private final String city;
     private final String zip;
     private final CoordinateDTO location;
 
-    public AddressDTO(int id, String street, String number, String city, String zip, CoordinateDTO location) {
+    public AddressDTO(Long id, String street, String number, String city, String zip, CoordinateDTO location) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -16,7 +16,7 @@ public class AddressDTO {
         this.zip = zip;
         this.location = location;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
     public String getStreet() {
