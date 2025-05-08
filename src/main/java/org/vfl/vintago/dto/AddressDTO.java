@@ -1,7 +1,7 @@
 package org.vfl.vintago.dto;
 
 public class AddressDTO {
-    private final int id;
+    private final Long id;
     private final String street;
     private final String number;
     private final String city;
@@ -9,7 +9,7 @@ public class AddressDTO {
     private final CoordinateDTO location;
     private final String status;
 
-    public AddressDTO(int id, String street, String number, String city, String zip, CoordinateDTO location, String status) {
+    public AddressDTO(Long id, String street, String number, String city, String zip, CoordinateDTO location, String status) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -18,7 +18,7 @@ public class AddressDTO {
         this.location = location;
         this.status = status;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
     public String getStreet() {

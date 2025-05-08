@@ -1,15 +1,15 @@
 package org.vfl.vintago.dto;
 
 public class DeliveryTruckDTO {
-    private final int id;
+    private final Long id;
     private final String name;
 
-    public DeliveryTruckDTO(int id, String name) {
+    public DeliveryTruckDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

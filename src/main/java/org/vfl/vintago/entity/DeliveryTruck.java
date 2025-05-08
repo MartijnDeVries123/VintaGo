@@ -10,7 +10,7 @@ public class DeliveryTruck {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name= "name", nullable = false)
     private String name;
@@ -25,7 +25,7 @@ public class DeliveryTruck {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
