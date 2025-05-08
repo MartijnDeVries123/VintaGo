@@ -30,8 +30,13 @@ public class Address {
 
     @Column(name = "lng")
     private double lng;
+  
+    @Column(name = "status")
+    private String status;
 
     public Long getId() {
+
+    public int getId() {
         return id;
     }
 
@@ -81,6 +86,14 @@ public class Address {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Transient
