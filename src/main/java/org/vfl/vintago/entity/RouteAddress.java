@@ -22,16 +22,12 @@ public class RouteAddress {
     @Column(name = "step_order", nullable = false)
     private int stepOrder;
 
-    @Column(nullable = false)
-    private String status;
-
     public RouteAddress() {}
 
-    public RouteAddress(Route route, Address address, int stepOrder, String status) {
+    public RouteAddress(Route route, Address address, int stepOrder) {
         this.route = route;
         this.address = address;
         this.stepOrder = stepOrder;
-        this.status = status;
         this.id = new RouteAddressId(route.getId(), address.getId());
     }
 
@@ -65,13 +61,5 @@ public class RouteAddress {
 
     public void setStepOrder(int stepOrder) {
         this.stepOrder = stepOrder;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

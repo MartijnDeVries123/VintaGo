@@ -34,12 +34,12 @@ public class RouteMapper {
                 address.getNumber(),
                 address.getZip(),
                 address.getCity(),
-                address.getLocation()
+                address.getLocation(),
+                address.getStatus()
         );
 
         return new RouteAddressDTO(
                 routeAddress.getStepOrder(),
-                routeAddress.getStatus(),
                 addressDto
         );
 

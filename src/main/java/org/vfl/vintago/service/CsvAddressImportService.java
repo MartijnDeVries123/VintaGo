@@ -28,6 +28,7 @@ public class CsvAddressImportService {
                     address.setZip(fields[2].trim());
                     address.setCity(fields[3].trim());
                     address.setLocation(new CoordinateDTO(Double.parseDouble(fields[4].trim()), Double.parseDouble(fields[5].trim())));
+                    address.setStatus("Unfulfilled");
 
                     addressRepository.save(address);
                 }
