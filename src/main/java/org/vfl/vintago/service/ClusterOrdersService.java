@@ -1,5 +1,6 @@
 package org.vfl.vintago.service;
 
+import org.springframework.stereotype.Service;
 import org.vfl.vintago.dto.CoordinateDTO;
 import org.vfl.vintago.entity.Address;
 import org.vfl.vintago.util.GeoUtils;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class ClusterOrdersService {
     private int clusterSize;
     private static final double CENTROID_THRESHOLD = 0.0001; // Accuracy of 0.0001 is approx. 10 meter in latitude and longitude
