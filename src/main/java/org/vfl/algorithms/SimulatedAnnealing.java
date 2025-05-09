@@ -1,11 +1,15 @@
 package org.vfl.algorithms;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class SimulatedAnnealing implements TSPAlgorithm {
+
+@Service
+public class SimulatedAnnealing implements VrpSolver {
     private static final double COOLING_RATE = 0.995;
     private static final double INITIAL_TEMPERATURE = 1000;
 

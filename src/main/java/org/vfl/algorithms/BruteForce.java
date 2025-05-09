@@ -1,10 +1,18 @@
 package org.vfl.algorithms;
 
+import org.springframework.stereotype.Component;
+import org.vfl.vintago.entity.Address;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BruteForce implements TSPAlgorithm {
-    public List<Integer> findShortestRoute(double[][] distanceMatrix) {
+@Component
+public class BruteForce implements VrpSolver {
+
+    public boolean canCreateMultipleRoutes() {
+        return false;
+    }
+    public List<Integer> solve(List<Address> unfulfilledOrders, String days) {
         int n = distanceMatrix.length;
         List<Integer> cities = new ArrayList<>();
 

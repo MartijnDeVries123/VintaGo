@@ -3,7 +3,7 @@ package org.vfl.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NearestNeighbor implements TSPAlgorithm {
+public class NearestNeighbor implements VrpSolver {
     public List<Integer> findShortestRoute(double[][] distanceMatrix) {
         int n = distanceMatrix.length;
         List<Integer> route = new ArrayList<>();
