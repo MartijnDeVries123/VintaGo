@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GeneticAlgorithm implements TSPAlgorithm {
-    private static final boolean debug = false;
+    private static final boolean debug = true;
 
     @Override
     public List<Integer> findShortestRoute(double[][] distanceMatrix) {
@@ -13,7 +13,20 @@ public class GeneticAlgorithm implements TSPAlgorithm {
         int populationSize = Math.max(numberOfAddresses, Math.min(2 * numberOfAddresses, 1000));
         List<List<Integer>> population = initializePopulation(numberOfAddresses, populationSize);
 
-        return null;
+        // Loop through the population until a solution is found
+        List<Integer> bestRoute = null;
+        for (int i = 0; i < populationSize; i++) {
+            double bestDistance = Double.MAX_VALUE;
+            bestRoute = null;
+            for (List<Integer> route : population) {
+                double distance = calculateRouteDistance(route, distanceMatrix);
+                if (distance < bestDistance) {
+                    bestDistance = distance;
+                    bestRoute = route;
+                }
+            }
+        }
+        return bestRoute;
     }
 
     private List<List<Integer>> initializePopulation(int numberOfAddresses, int populationSize) {
@@ -41,4 +54,14 @@ public class GeneticAlgorithm implements TSPAlgorithm {
         }
         return population;
     }
+
+    private double calculateRouteDistance(List<Integer> route, double[][] distanceMatrix) {
+        double totalDistance = 0.0;
+        for (int i = 0; i < route.size() - 1; i++) {
+            totalDistance += distanceMatrix[route.get(i)][route.get(i + 1)];
+        }
+        if (debug) System.out.println("Route: " + route + ", total distance: " + totalDistance);
+        return totalDistance;
+    }
+
 }
