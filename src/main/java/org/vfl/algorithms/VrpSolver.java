@@ -66,21 +66,22 @@ public abstract class VrpSolver {
         route.setDeliveryDate(deliveryDate);
         route.setDeliveryTruck(deliveryTruck);
 
+        int stepOrder = 0;
         List<RouteAddress> routeAddresses = new ArrayList<>();
-        for (int i = 0; i < solvedAddresses.size(); i++) {
-            if (solvedAddresses.get(i).equals(WINDESHEIM_DEPOT)) continue;
+        for (Address solvedAddress : solvedAddresses) {
+            if (solvedAddress.equals(WINDESHEIM_DEPOT)) continue;
 
-            Address address = solvedAddresses.get(i);
-            address.setStatus("pending");
+            stepOrder++;
+            solvedAddress.setStatus("pending");
 
             RouteAddress routeAddress = new RouteAddress();
             routeAddress.setRoute(route);
-            routeAddress.setAddress(address);
-            routeAddress.setStepOrder(i + 1);
+            routeAddress.setAddress(solvedAddress);
+            routeAddress.setStepOrder(stepOrder);
 
             RouteAddressId id = new RouteAddressId();
             id.setRouteId(null); // Wordt na persist ingevuld
-            id.setAddressId(address.getId());
+            id.setAddressId(solvedAddress.getId());
             routeAddress.setId(id);
 
             routeAddresses.add(routeAddress);
