@@ -82,6 +82,11 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.google.ortools</groupId>
+			<artifactId>ortools-java</artifactId>
+			<version>9.11.4210</version>
+		</dependency>
     </dependencies>
 
 	<build>
