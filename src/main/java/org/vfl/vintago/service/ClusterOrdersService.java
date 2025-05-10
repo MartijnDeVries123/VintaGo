@@ -18,7 +18,7 @@ public class ClusterOrdersService {
         this.clusterSize = size;
     }
 
-    private static double distanceTo(CoordinateDTO coordinate1, CoordinateDTO coordinate2) {
+    private static long distanceTo(CoordinateDTO coordinate1, CoordinateDTO coordinate2) {
         return GeoUtils.haversine(coordinate1.getLat(),coordinate1.getLng(),coordinate2.getLat(),coordinate2.getLng());
     }
 
@@ -55,10 +55,10 @@ public class ClusterOrdersService {
             // Assign each address to the closest centroid
             for (Address address : addresses) {
                 int closestClusterIndex = 0;
-                double minDistance = distanceTo(centroids.get(0).getLocation(), address.getLocation());
+                long minDistance = distanceTo(centroids.get(0).getLocation(), address.getLocation());
 
                 for (int i = 1; i < centroids.size(); i++) {
-                    double distance = distanceTo(centroids.get(i).getLocation(), address.getLocation());
+                    long distance = distanceTo(centroids.get(i).getLocation(), address.getLocation());
                     if (distance < minDistance) {
                         minDistance = distance;
                         closestClusterIndex = i;
