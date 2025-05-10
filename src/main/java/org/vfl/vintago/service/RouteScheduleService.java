@@ -10,7 +10,9 @@ import org.vfl.vintago.mapper.RouteMapper;
 import org.vfl.vintago.repository.AddressRepository;
 import org.vfl.vintago.repository.RouteRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RouteScheduleService {
@@ -18,6 +20,7 @@ public class RouteScheduleService {
     @Autowired RouteRepository routeRepository;
     @Autowired SolverResolver solverResolver;
     @Autowired SimulationTypeDispatcher simulationTypeDispatcher;
+    @Autowired LoggingService loggingService;
 
     public List<RouteDTO> getCompleteSchedule() {
         List<Route> routes = routeRepository.findAll();
@@ -38,12 +41,15 @@ public class RouteScheduleService {
 
         List<Route> createdSchedule;
 
-        if (days.equals("day")) {
-            createdSchedule = vrpSolver.solve(unfulfilledOrder, 1);
-        } else {
-            createdSchedule = vrpSolver.solve(unfulfilledOrder, 6);
-        }
+        int amountDays = days.equals("day") ? 1 : 6;
 
+        long startTime = System.nanoTime();
+        createdSchedule = vrpSolver.solve(unfulfilledOrder, amountDays);
+        long endTime = System.nanoTime();
+
+        double durationMs = (endTime - startTime) / 1_000_000.0;
+
+        logResults(simulationType, vrpSolver.getClass().getSimpleName(), durationMs, amountDays);
         return RouteMapper.toRouteDTOList(createdSchedule);
     }
 
@@ -54,5 +60,18 @@ public class RouteScheduleService {
     public List<Address> getUnfulfilledOrders() {
         return addressRepository.findByStatus("Unfulfilled");
     }
+
+    public List<Address> getPendingOrders() {
+        return addressRepository.findByStatus("pending");
+    }
+
+    public void logResults(String simulationType, String solver, double durationMs, int days) {
+        Map<String, String> context = Map.of(
+                "planned_orders", String.valueOf(getPendingOrders().size()),
+                "days", String.valueOf(days)
+        );
+        loggingService.writeLog(simulationType, solver, durationMs, context);
+    }
+
 
 }
