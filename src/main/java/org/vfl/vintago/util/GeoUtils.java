@@ -9,7 +9,7 @@ public class GeoUtils {
     * This adaptation is used in accordance with that license.
     * For more: https://www.gnu.org/licenses/fdl-1.2.html
     */
-    public static double haversine(double lat1, double lng1, double lat2, double lng2) { // shortest path over the Earth’s surface
+    public static long haversine(double lat1, double lng1, double lat2, double lng2) { // shortest path over the Earth’s surface
 
         // convert degrees to radians for Math calculations
         double rLat1 = Math.toRadians(lat1);
@@ -26,6 +26,6 @@ public class GeoUtils {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         // returns the actual distance in km
-        return EARTH_RADIUS * c;
+        return (long) (EARTH_RADIUS * c);
     }
 }
