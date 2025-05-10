@@ -27,7 +27,7 @@ public class BruteForce extends VrpSolver {
         List<List<Address>> clusters = clusterOrdersService.clusterOrders(unfulfilledOrders);
 
         // Create routes per day * amount trucks available
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < days; i++) {
             for (DeliveryTruck deliveryTruck : deliveryTrucks) {
                 // Get random cluster from clusters
                 if (! clusters.isEmpty() ) {
