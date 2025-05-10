@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GeneticAlgorithm implements TSPAlgorithm {
-    private static final boolean debug = true;
+    private static final boolean debug = false;
 
     @Override
     public List<Integer> findShortestRoute(double[][] distanceMatrix) {
