@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.vfl.vintago.dto.RouteDTO;
+import org.vfl.vintago.entity.Route;
 import org.vfl.vintago.service.RouteScheduleService;
 
 import java.util.List;
@@ -20,5 +21,13 @@ public class RouteScheduleController {
     public ResponseEntity<List<RouteDTO>> getCompleteSchedule() {
         List<RouteDTO> schedule = routeScheduleService.getCompleteSchedule();
         return ResponseEntity.ok(schedule);
+    }
+
+    @GetMapping("/create-schedule")
+    public ResponseEntity<List<RouteDTO>> createSchedule() {
+        // Todo Post mapping met parameters
+        List<RouteDTO> schedule = routeScheduleService.createSchedule("sim20", "bf", "day");
+        return ResponseEntity.ok(schedule);
+
     }
 }

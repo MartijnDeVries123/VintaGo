@@ -11,7 +11,6 @@ import org.vfl.vintago.repository.AddressRepository;
 import org.vfl.vintago.repository.RouteRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RouteScheduleService {
@@ -25,19 +24,21 @@ public class RouteScheduleService {
         return RouteMapper.toRouteDTOList(routes);
     }
 
-    public void createSchedule(String simulationType, String solver, String days) {
+    public List<RouteDTO> createSchedule(String simulationType, String solver, String days) {
         this.initializeSimulationEnvironment(simulationType);
 
         List<Address> unfulfilledOrder = this.getUnfulfilledOrders();
         VrpSolver vrpSolver = solverResolver.getSolver(solver);
 
-        if (Objects.equals(days, "day")) {
-            // schedule = vrp solve for 1 day
-        } else if (Objects.equals(days, "week")) {
-            // schedule = vrp solve for 6 days
+        List<Route> createdSchedule;
+
+        if (days.equals("day")) {
+            createdSchedule = vrpSolver.solve(unfulfilledOrder, 1);
+        } else {
+            createdSchedule = vrpSolver.solve(unfulfilledOrder, 6);
         }
 
-        //return schedule
+        return RouteMapper.toRouteDTOList(createdSchedule);
     }
 
     public void initializeSimulationEnvironment(String simulationType) {
