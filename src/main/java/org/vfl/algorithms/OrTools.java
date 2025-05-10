@@ -79,7 +79,7 @@ public class OrTools extends VrpSolver{
         routing.getMutableDimension("Time");
 
         // Voeg Disjunctions toe: klanten mogen worden overgeslagen met penalty
-        int penalty = 100;
+        int penalty = 500;
         for (int node = 1; node < distanceMatrix.length; node++) {
             routing.addDisjunction(new long[]{manager.nodeToIndex(node)}, penalty);
         }
