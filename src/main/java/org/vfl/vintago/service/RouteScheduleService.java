@@ -24,6 +24,12 @@ public class RouteScheduleService {
         return RouteMapper.toRouteDTOList(routes);
     }
 
+    public RouteDTO getRouteById(Long id) {
+        Route route = routeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Route niet gevonden met id " + id));;
+        return RouteMapper.toRouteDTO(route);
+    }
+
     public List<RouteDTO> createSchedule(String simulationType, String solver, String days) {
         this.initializeSimulationEnvironment(simulationType);
 
