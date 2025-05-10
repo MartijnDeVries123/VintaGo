@@ -66,11 +66,11 @@ public class OrTools extends VrpSolver{
         RoutingIndexManager manager = new RoutingIndexManager(distanceMatrix.length, numVehicles, depot);
         RoutingModel routing = new RoutingModel(manager);
 
-        // Kostenfunctie: afstand = tijd in minuten (60 km/h)
+        // Kostenfunctie: afstand = tijd in minuten (60 km/h). Add 15 min service time.
         final int transitCallbackIndex = routing.registerTransitCallback((fromIndex, toIndex) -> {
             int fromNode = manager.indexToNode(fromIndex);
             int toNode = manager.indexToNode(toIndex);
-            return distanceMatrix[fromNode][toNode];
+            return distanceMatrix[fromNode][toNode] + 15;
         });
         routing.setArcCostEvaluatorOfAllVehicles(transitCallbackIndex);
 
@@ -79,7 +79,7 @@ public class OrTools extends VrpSolver{
         routing.getMutableDimension("Time");
 
         // Voeg Disjunctions toe: klanten mogen worden overgeslagen met penalty
-        int penalty = 1000;
+        int penalty = 100;
         for (int node = 1; node < distanceMatrix.length; node++) {
             routing.addDisjunction(new long[]{manager.nodeToIndex(node)}, penalty);
         }
