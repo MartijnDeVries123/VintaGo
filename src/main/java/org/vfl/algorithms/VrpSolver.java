@@ -19,7 +19,8 @@ public abstract class VrpSolver {
     protected static final Address WINDESHEIM_DEPOT;
     static {
         Address depot = new Address();
-        depot.setStreet("Campus 2");
+        depot.setStreet("Campus");
+        depot.setNumber("2");
         depot.setZip("8017CA");
         depot.setCity("Zwolle");
         depot.setLat(52.4964);
@@ -40,23 +41,6 @@ public abstract class VrpSolver {
 
     public abstract List<Route> solve(List<Address> unfulfilledOrders, int days);
 
-    // Todo. Dit moet verplaatst worden naar een eigen service. Een LoggingService zou bij uitstek geschikt zijn.
-//    default List<Integer> findShortestRouteTimingMethod(double[][] distanceMatrix) {
-//        long startTime = System.nanoTime();
-//        double elapsedTimeMs = 0;
-//        List<Integer> shortestRoute = findShortestRoute(distanceMatrix);
-//        long endTime = System.nanoTime();
-//        long elapsedTimeNs = endTime - startTime;
-//
-//        if (elapsedTimeNs < 1_000_000) {
-//            elapsedTimeMs = 0;
-//        } else {
-//            elapsedTimeMs = elapsedTimeNs / 1_000_000.0;
-//        }
-//
-//        System.out.println("\nExecution time: " + (elapsedTimeNs) + "ns = " + String.format("%.1f", elapsedTimeMs) + "ms");
-//        return shortestRoute;
-//    }
     protected Route saveRoute(
             LocalDate deliveryDate,
             DeliveryTruck deliveryTruck,
@@ -93,7 +77,11 @@ public abstract class VrpSolver {
         return route;
     }
 
-    protected double calculateTotalDistance(List<Address> route, Map<Address, Integer> addressToIndex, long[][] distanceMatrix) {
+    protected double calculateTotalDistance(
+            List<Address> route,
+            Map<Address, Integer> addressToIndex,
+            long[][] distanceMatrix
+    ) {
         double total = 0;
         for (int i = 0; i < route.size() - 1; i++) {
             int fromIndex = addressToIndex.get(route.get(i));

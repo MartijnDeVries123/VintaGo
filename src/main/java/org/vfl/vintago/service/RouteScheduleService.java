@@ -18,6 +18,7 @@ public class RouteScheduleService {
     @Autowired RouteRepository routeRepository;
     @Autowired SolverResolver solverResolver;
     @Autowired SimulationTypeDispatcher simulationTypeDispatcher;
+    @Autowired RouteLoggingService routeLoggingService;
 
     public List<RouteDTO> getCompleteSchedule() {
         List<Route> routes = routeRepository.findAll();
@@ -38,12 +39,15 @@ public class RouteScheduleService {
 
         List<Route> createdSchedule;
 
-        if (days.equals("day")) {
-            createdSchedule = vrpSolver.solve(unfulfilledOrder, 1);
-        } else {
-            createdSchedule = vrpSolver.solve(unfulfilledOrder, 6);
-        }
+        int amountDays = days.equals("day") ? 1 : 6;
 
+        long startTime = System.nanoTime();
+        createdSchedule = vrpSolver.solve(unfulfilledOrder, amountDays);
+        long endTime = System.nanoTime();
+
+        double durationMs = (endTime - startTime) / 1_000_000.0;
+
+        routeLoggingService.logResults(createdSchedule, simulationType, vrpSolver.getClass().getSimpleName(), durationMs, days);
         return RouteMapper.toRouteDTOList(createdSchedule);
     }
 
@@ -54,5 +58,4 @@ public class RouteScheduleService {
     public List<Address> getUnfulfilledOrders() {
         return addressRepository.findByStatus("Unfulfilled");
     }
-
 }
