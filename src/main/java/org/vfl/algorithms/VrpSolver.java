@@ -78,8 +78,8 @@ public abstract class VrpSolver {
     }
 
     protected double calculateTotalDistance(
-            List<Address> route, Map<Address,
-            Integer> addressToIndex,
+            List<Address> route,
+            Map<Address, Integer> addressToIndex,
             long[][] distanceMatrix
     ) {
         double total = 0;
