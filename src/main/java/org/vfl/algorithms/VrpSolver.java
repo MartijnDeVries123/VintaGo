@@ -48,6 +48,9 @@ public abstract class VrpSolver {
             List<Address> solvedAddresses
     ) {
         Route route = new Route();
+
+        if (solvedAddresses == null || solvedAddresses.isEmpty()) return null;
+
         route.setDeliveryDate(deliveryDate);
         route.setDeliveryTruck(deliveryTruck);
 
@@ -75,6 +78,7 @@ public abstract class VrpSolver {
         route.setRouteAddresses(routeAddresses);
 
         routeRepository.save(route);
+
         return route;
     }
 

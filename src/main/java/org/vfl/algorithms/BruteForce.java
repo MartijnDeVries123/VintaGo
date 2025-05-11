@@ -39,7 +39,9 @@ public class BruteForce extends VrpSolver {
                     // Save route to database
                     Route route = saveRoute(start.plusDays(i), deliveryTruck, solvedAddresses);
                     // Add route to schedule
-                    schedule.add(route);
+                    if (route != null) {
+                        schedule.add(route);
+                    }
                 }
             }
         }

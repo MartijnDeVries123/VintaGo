@@ -24,7 +24,9 @@ public class GeneticAlgorithm extends VrpSolver {
     private static final double CROSSOVER_RATE = 0.8;
     private static final Random random = new Random();
     private static final int VEHICLE_COUNT = 2;
+    private static final double MAX_ROUTE_DISTANCE = 480;
     private long[][] allAddressDistanceMatrix;
+
     Map<Address, Integer> allAddressIndexMap;
 
     public List<Route> solve(List<Address> unfulfilledOrders, int days) {
@@ -193,19 +195,29 @@ public class GeneticAlgorithm extends VrpSolver {
         double dist = 0;
         dist += allAddressDistanceMatrix[0][route.get(0)]; // Start at depot
         for (int i = 0; i < route.size() - 1; i++) {
-            dist += allAddressDistanceMatrix[route.get(i)][route.get(i + 1)];
+            dist += allAddressDistanceMatrix[route.get(i)][route.get(i + 1)] + 15; // add 15 min service time
         }
         dist += allAddressDistanceMatrix[0][route.get(0)]; // end at depot
+
+        if (dist > MAX_ROUTE_DISTANCE) {
+            dist += 500; // penalty for overshooting max_route_distance
+        }
+
         return dist;
     }
 
     private List<Route> decodeChromosome(List<Integer> chromosome, List<Address> addresses) {
+        if (chromosome == null) {
+            return Collections.emptyList();
+        }
+
         List<Route> routes = new ArrayList<>();
         List<Address> buffer = new ArrayList<>();
 
         List<DeliveryTruck> trucks = deliveryTruckRepository.findAll();
         int vehicleIndex = 0;
         LocalDate date = LocalDate.now();
+
 
         for (Integer gene : chromosome) {
             if (gene > 0) {
