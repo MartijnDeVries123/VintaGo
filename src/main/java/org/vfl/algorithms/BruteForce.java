@@ -71,7 +71,7 @@ public class BruteForce extends VrpSolver {
         return permutations;
     }
 
-    public List<Address> solveForOneRoute(List<Address> unfulfilledOrders) {
+    private List<Address> solveForOneRoute(List<Address> unfulfilledOrders) {
         List<Address> withDepot = new ArrayList<>();
         withDepot.add(WINDESHEIM_DEPOT);
         withDepot.addAll(unfulfilledOrders);
