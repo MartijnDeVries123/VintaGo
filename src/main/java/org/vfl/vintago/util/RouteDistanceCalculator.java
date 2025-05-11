@@ -36,7 +36,7 @@ public class RouteDistanceCalculator {
             Address from = withDepot.get(i);
             Address to = withDepot.get(i + 1);
 
-            double distance = GeoUtils.haversine(
+            long distance = GeoUtils.haversine(
                     from.getLat(), from.getLng(),
                     to.getLat(), to.getLng()
             );
