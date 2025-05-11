@@ -22,8 +22,9 @@ public class RouteDistanceCalculator {
 
     // Bereken de totale afstand van de route
     public static long calculateTotalRouteDistance(Route route) {
-        long totalDistance = 0;
+        if (route.getRouteAddresses() == null || route.getRouteAddresses().isEmpty()) return 0;
 
+        long totalDistance = 0;
         List<Address> addresses = route.getRouteAddresses().stream().map(RouteAddress::getAddress).toList();
 
         List<Address> withDepot = new ArrayList<>();
@@ -36,7 +37,7 @@ public class RouteDistanceCalculator {
             Address from = withDepot.get(i);
             Address to = withDepot.get(i + 1);
 
-            double distance = GeoUtils.haversine(
+            long distance = GeoUtils.haversine(
                     from.getLat(), from.getLng(),
                     to.getLat(), to.getLng()
             );

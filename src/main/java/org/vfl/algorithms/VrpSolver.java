@@ -28,9 +28,12 @@ public abstract class VrpSolver {
         WINDESHEIM_DEPOT = depot;
     }
 
+    public abstract List<Route> solve(List<Address> unfulfilledOrders, int days);
+
     protected long[][] getDistanceMatrix(List<Address> addresses) {
         return DistanceMatrix.getDistanceMatrix(addresses);
     }
+
     protected Map<Address, Integer> mapAddressToIndex(List<Address> addresses) {
         Map<Address, Integer> addressToIndex = new HashMap<>();
         for (int i = 0; i < addresses.size(); i++) {
@@ -39,14 +42,15 @@ public abstract class VrpSolver {
         return addressToIndex;
     }
 
-    public abstract List<Route> solve(List<Address> unfulfilledOrders, int days);
-
     protected Route saveRoute(
             LocalDate deliveryDate,
             DeliveryTruck deliveryTruck,
             List<Address> solvedAddresses
     ) {
         Route route = new Route();
+
+        if (solvedAddresses == null || solvedAddresses.isEmpty()) return null;
+
         route.setDeliveryDate(deliveryDate);
         route.setDeliveryTruck(deliveryTruck);
 
@@ -74,6 +78,7 @@ public abstract class VrpSolver {
         route.setRouteAddresses(routeAddresses);
 
         routeRepository.save(route);
+
         return route;
     }
 
