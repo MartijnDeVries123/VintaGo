@@ -34,3 +34,5 @@ build/
 
 ### Personal properties from Joost Sannen ###
 .env
+
+/logs
