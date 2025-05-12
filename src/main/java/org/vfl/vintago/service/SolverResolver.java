@@ -19,6 +19,5 @@ public class SolverResolver {
             case "ga" -> geneticAlgorithm;
             default -> null;
         };
-
     }
 }
