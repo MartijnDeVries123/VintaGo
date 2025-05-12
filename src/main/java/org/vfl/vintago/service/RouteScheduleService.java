@@ -37,12 +37,10 @@ public class RouteScheduleService {
         List<Address> unfulfilledOrder = this.getUnfulfilledOrders();
         VrpSolver vrpSolver = solverResolver.getSolver(solver);
 
-        List<Route> createdSchedule;
-
         int amountDays = days.equals("day") ? 1 : 6;
 
         long startTime = System.nanoTime();
-        createdSchedule = vrpSolver.solve(unfulfilledOrder, amountDays);
+        List<Route> createdSchedule = vrpSolver.solve(unfulfilledOrder, amountDays);
         long endTime = System.nanoTime();
 
         double durationMs = (endTime - startTime) / 1_000_000.0;
