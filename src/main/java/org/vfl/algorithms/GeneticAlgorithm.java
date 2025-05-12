@@ -193,14 +193,14 @@ public class GeneticAlgorithm extends VrpSolver {
         if (route.isEmpty()) return 0;
 
         double dist = 0;
-        dist += allAddressDistanceMatrix[0][route.get(0)]; // Start at depot
+        dist += allAddressDistanceMatrix[0][route.get(0) + 1]; // Start at depot
         for (int i = 0; i < route.size() - 1; i++) {
-            dist += allAddressDistanceMatrix[route.get(i)][route.get(i + 1)] + 15; // add 15 min service time
+            dist += allAddressDistanceMatrix[route.get(i) + 1][route.get(i + 1) + 1] + 15; // add 15 min service time
         }
-        dist += allAddressDistanceMatrix[0][route.get(0)]; // end at depot
+        dist += allAddressDistanceMatrix[0][route.get(0) + 1]; // end at depot
 
         if (dist > MAX_ROUTE_DISTANCE) {
-            dist += 500; // penalty for overshooting max_route_distance
+            dist += (500 * (Math.abs(MAX_ROUTE_DISTANCE - dist))); // penalty for overshooting max_route_distance
         }
 
         return dist;
@@ -220,8 +220,8 @@ public class GeneticAlgorithm extends VrpSolver {
 
 
         for (Integer gene : chromosome) {
-            if (gene > 0) {
-                buffer.add(addresses.get(gene - 1));
+            if (gene >= 0) {
+                buffer.add(addresses.get(gene));
             } else {
                 if (!buffer.isEmpty()) {
                     Route route = saveRoute(date, trucks.get(vehicleIndex), new ArrayList<>(buffer));
