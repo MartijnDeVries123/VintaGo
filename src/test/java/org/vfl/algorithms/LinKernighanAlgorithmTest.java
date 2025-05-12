@@ -33,26 +33,25 @@ class LinKernighanAlgorithmTest {
     @Test
     void testSolveCreatesRoutes() {
         // dummy data
-        Address a1 = new Address();
-        a1.setLat(52.5098);
-        a1.setLng(6.0944);
+        Address a1 = new Address(); a1.setLat(52.379189); a1.setLng(4.899431);
+        Address a2 = new Address(); a2.setLat(51.9225);   a2.setLng(4.47917);
+        Address a3 = new Address(); a3.setLat(52.0705);   a3.setLng(4.3007);
+        Address a4 = new Address(); a4.setLat(52.0907);   a4.setLng(5.1214);
+        Address a5 = new Address(); a5.setLat(51.4416);   a5.setLng(5.4697);
+        Address a6 = new Address(); a6.setLat(53.2194);   a6.setLng(6.5665);
+        Address a7 = new Address(); a7.setLat(52.5200);   a7.setLng(5.7480);
+        Address a8 = new Address(); a8.setLat(51.5866);   a8.setLng(4.7750);
+        Address a9 = new Address(); a9.setLat(52.5050);   a9.setLng(6.0900);
+        Address a10 = new Address(); a10.setLat(51.8126); a10.setLng(5.8372);
 
-        Address a2 = new Address();
-        a2.setLat(52.5121);
-        a2.setLng(6.0989);
-
-        Address a3 = new Address();
-        a3.setLat(52.5112);
-        a3.setLng(6.0963);
-
-        List<Address> orders = List.of(a1, a2, a3);
+        List<Address> orders = List.of(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 
         List<Route> routes = algorithm.solve(orders, 1);
 
         //Verify output
         assertNotNull(routes);
         assertEquals(1, routes.size());
-        assertEquals(3, routes.get(0).getRouteAddresses().size()); // geen depot
+        assertEquals(10, routes.get(0).getRouteAddresses().size()); // removed depot
     }
 
     // Dummy repositories & services
