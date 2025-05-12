@@ -91,7 +91,7 @@ public abstract class VrpSolver {
         for (int i = 0; i < route.size() - 1; i++) {
             int fromIndex = addressToIndex.get(route.get(i));
             int toIndex = addressToIndex.get(route.get(i + 1));
-            total += distanceMatrix[fromIndex][toIndex];
+            total += distanceMatrix[fromIndex][toIndex] + 15; // add 15 min service time
         }
         return total;
     }

@@ -11,10 +11,8 @@ import java.util.*;
 
 @Component
 public class BruteForce extends VrpSolver {
-    @Autowired
-    ClusterOrdersService clusterOrdersService;
-    @Autowired
-    DeliveryTruckRepository deliveryTruckRepository;
+    @Autowired ClusterOrdersService clusterOrdersService;
+    @Autowired DeliveryTruckRepository deliveryTruckRepository;
 
     Random random = new Random();
 
@@ -23,7 +21,8 @@ public class BruteForce extends VrpSolver {
         List<DeliveryTruck> deliveryTrucks = deliveryTruckRepository.findAll();
         LocalDate start = LocalDate.now();
 
-        clusterOrdersService.setClusterSize(unfulfilledOrders.size() / 3);
+        int CLUSTER_SIZE = unfulfilledOrders.size() / 3;
+        clusterOrdersService.setClusterSize(CLUSTER_SIZE);
         List<List<Address>> clusters = clusterOrdersService.clusterOrders(unfulfilledOrders);
 
         // Create routes per day * amount trucks available

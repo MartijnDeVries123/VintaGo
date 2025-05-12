@@ -26,7 +26,8 @@ public class LinKernighanAlgorithm extends VrpSolver {
         List<DeliveryTruck> deliveryTrucks = deliveryTruckRepository.findAll();
         LocalDate start = LocalDate.now();
 
-        clusterOrdersService.setClusterSize(unfulfilledOrders.size() / 10);
+        int CLUSTER_SIZE = unfulfilledOrders.size() / 10;
+        clusterOrdersService.setClusterSize(CLUSTER_SIZE);
         List<List<Address>> clusters = clusterOrdersService.clusterOrders(unfulfilledOrders);
 
         // Create routes per day * amount trucks available
