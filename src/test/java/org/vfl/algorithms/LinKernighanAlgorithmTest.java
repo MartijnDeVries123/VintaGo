@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.vfl.algorithms.VrpSolver.WINDESHEIM_DEPOT;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.vfl.vintago.util.RouteDistanceCalculator.calculateTotalRouteDistance;
 
 
 class LinKernighanAlgorithmTest {
@@ -47,11 +48,13 @@ class LinKernighanAlgorithmTest {
         List<Address> orders = List.of(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 
         List<Route> routes = algorithm.solve(orders, 1);
+        Route route = routes.get(0);
 
         //Verify output
         assertNotNull(routes);
         assertEquals(1, routes.size());
         assertEquals(10, routes.get(0).getRouteAddresses().size()); // removed depot
+        assertEquals(690, calculateTotalRouteDistance(route), 25);
     }
 
     // Dummy repositories & services
