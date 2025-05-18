@@ -50,7 +50,7 @@ public class LinKernighanAlgorithm extends VrpSolver {
         return schedule;
     }
 
-    private List<Address> solveForOneRoute(List<Address> bestRoute) {
+    protected List<Address> solveForOneRoute(List<Address> bestRoute) {
         List<Address> withDepot = new ArrayList<>();
         withDepot.add(WINDESHEIM_DEPOT);
         withDepot.addAll(bestRoute);
